@@ -1,0 +1,153 @@
+body {
+    box-sizing: border-box;
+    position: fixed;
+    margin: 0 auto;
+    width: 100%;
+    height: 100vh;
+    background-color: #1C6758;
+    font-family: 'Caveat Brush', cursive;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+main {
+    width: 320px;
+    height: 520px;
+    border: 6px solid black;
+    border-radius: 30px;
+    margin: 0 auto;
+    background-color:#EEF2E6 ;
+    display: grid;
+    grid-template-columns: 320px;
+    grid-template-rows: 100px 320px 100px;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    grid-row: 1/2 ;
+    display: block;
+    font-size: 30px;
+    text-align: center;
+    color: #3D8361;
+    height: max-content;
+    margin: 0;
+    padding: 8px 0;
+    filter: drop-shadow(0px 0px 3px rgba(3, 8, 7, 0.171));;
+}
+
+.img-container, .fav-img-container  {
+    grid-row: 2/3;
+    margin: 0 auto;
+    width: 90%;
+    height: 320px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    scroll-behavior: smooth;
+}
+
+.img-card {
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+
+img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 20px;
+    box-shadow: 0 0 10px 2px rgba(3, 8, 7, 0.4);
+}
+
+.btn-container {
+    row-gap: 3/4;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+button {
+    text-align: center;
+    cursor: pointer;
+    color:rgb(28, 103, 88);
+    background-color: rgb(214, 205, 164);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    box-shadow: 0 0 10px 2px rgba(3, 8, 7, 0.4);
+    padding: 4px;
+}
+
+button.favorite {
+    position: absolute;
+    z-index: 2;
+    right: 4px;
+    bottom: 8px;
+    padding-top: 10px;
+}
+
+h2 {
+    grid-row: 1/2;
+    font-size: 30px;
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+}
+
+
+
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}
+
+/* .filled {
+    font-variation-settings:
+    'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48
+  } */
+
+
+
+/* Works on Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(28, 103, 88) transaparent;
+  }
+  
+  /* Works on Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  *::-webkit-scrollbar-track {
+    background: transaparent;
+    
+  }
+  
+  *::-webkit-scrollbar-thumb {
+    background-color:rgb(28, 103, 88);
+    border-radius: 20px;
+    border: transparent;
+    
+  }
