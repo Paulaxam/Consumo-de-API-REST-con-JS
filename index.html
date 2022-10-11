@@ -22,9 +22,9 @@
             </div>
 
             <div class="btn-container">
-                <button id="refresh">
+                <button id="home">
                     <span class="material-symbols-outlined">
-                    refresh
+                    home
                     </span>
                 </button>
                 <button id="star">
@@ -32,11 +32,40 @@
                     star
                     </span>
                 </button>
+                <button id="upload">
+                    <span class="material-symbols-outlined">
+                    cloud_upload
+                    </span>
+                </button>
+                <button id="refresh">
+                    <span class="material-symbols-outlined">
+                    refresh
+                    </span>
+                </button>
             </div>
 
-            <h2 class="hidden"> 💖 Favorite Doggies 💖</h2>
+            <h2 class="h2-fav hidden"> 💖 Favorite Doggies 💖</h2>
 
             <div class="fav-img-container hidden">
+            </div>
+
+            <h2 class="h2-up hidden"> Sube a tu perrito</h2>
+
+            <div class="uploading hidden">
+                <form id="uploading-form">
+                    <p class="hidden">Ya subimos tu perrito!🥰</p>
+                    <img class="hidden" alt="upload image" id="upload-output">
+                    <label for="file">
+                        Selecciona un archivo
+                    </label>
+                    <input type="file" id="file" name="file">
+
+                    <button type="button" id="upload-doggy">
+                        <span class="material-symbols-outlined">
+                            file_upload
+                        </span>
+                    </button>
+                </form>
             </div>
     </main>
 
