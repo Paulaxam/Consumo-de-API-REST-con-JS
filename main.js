@@ -24,6 +24,7 @@ const heartBtn = document.querySelector(".favorite");
 const uploadDoggyBtn = document.querySelector("#upload-doggy");
 const spanError = document.querySelector("#error");
 const uploadInput = document.getElementById("file");
+const pUpload = document.querySelector("p");
 
 let imgLoaded = [];
 let favImgSaved = [];
@@ -190,6 +191,7 @@ function toggleUpload() {
   spanError.classList.add("hidden");
   favoritesBtn.classList.remove("hidden");
   uploadBtn.classList.remove("hidden");
+  pUpload.classList.add("hidden");
 
   mainSection.classList.add("hidden");
   mainTitle.classList.add("hidden");
@@ -226,26 +228,45 @@ async function uploadDoggy() {
   const form = document.getElementById("uploading-form");
   const formData = new FormData(form);
   const loadImg = document.getElementById("upload-output");
-  const pUpload = document.querySelector("p");
+  loadImg.classList.add("hidden");
+  pUpload.classList.remove("hidden");
+  pUpload.innerHTML = `Estamos subiendo tu perrito ⏳`;
 
-  const res = await fetch(UPLOAD_API, {
-    method: "POST",
-    headers: {
-      "X-API-KEY": X_API_KEY,
-    },
-    body: formData,
-  });
-  const data = await res.json();
-  if (data.approved === 1) {
-    loadImg.classList.add("hidden");
-    pUpload.classList.remove("hidden");
+  try {
+    const res = await fetch(UPLOAD_API, {
+      method: "POST",
+      headers: {
+        "X-API-KEY": X_API_KEY,
+      },
+      body: formData,
+    });
+    const data = await res.json();
+    const res1 = await fetch(`${FAVORITE_API}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-api-key": X_API_KEY,
+      },
+      body: JSON.stringify({
+        image_id: data.id,
+      }),
+    });
+    console.log(data);
+    if (data.approved === 1) {
+      pUpload.innerHTML = `Ya subimos tu perrito!🥰`;
+    }
+  } catch (error) {
+    spanError.innerHTML = `<p style="color:rgb(194, 3, 3)">ups!! algo salió mal</p><p style="color:rgb(194, 3, 3)">Segur@ que es perro?🤔</p>`;
+    uploadSection.classList.add("hidden");
+    favoritesBtn.classList.add("hidden");
+    uploadBtn.classList.add("hidden");
+    spanError.classList.remove("hidden");
   }
 }
 
-function showFile(e) {
+function showFile() {
   const form = document.getElementById("uploading-form");
   const loadImg = document.getElementById("upload-output");
-  const pUpload = document.querySelector("p");
   const formData = new FormData(form);
 
   loadImg.classList.remove("hidden");
@@ -253,10 +274,10 @@ function showFile(e) {
 
   loadImg.src = URL.createObjectURL(formData.get("file"));
   loadImg.classList.remove("hidden");
+
   if (!formData.get("file").name) {
     loadImg.classList.add("hidden");
   }
-  console.log(formData.get("file").name);
 }
 
 getDoggy(imgNumber);
